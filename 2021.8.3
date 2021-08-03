@@ -1,0 +1,320 @@
+#define _CRT_SECURE_NO_WARNINGS 1 - 定义c语言库函数安全问题警告取消
+//在vs 中，打开项目 -> 属性 -> C/C++ -> 预处理器 -> 预处理器定义中添加 _CRT_SECURE_NO_WARNINGS 这个预定义
+//加在源文件的第一行
+//D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcprojectitems中的newc++file中添加#define _CRT_SECURE_NO_WARNINGS 1
+
+#include <stdio.h>
+
+int  main() 主函数-程序的入口-main函数有且仅有一个
+{
+	printf("hello world\n");
+	return 0;
+}
+不能没有主函数，也不能有多个主函数
+#define _CRT_SECURE_NO_WARNINGS 1
+
+//包含一个stdio.h的文件
+//std-标准 standard input output -需要写输出或输入的函数的时候需要写这个头文件
+#include <stdio.h>
+
+int main() //int 是整型的意思 //main前面的int表示main函数调用之后返回的一个整型值
+{
+                //这里完成任务
+                //在屏幕上输出hello world
+                //函数-print function - printf - 打印函数 
+                //printf-库函数-C语言本身提供给我们使用的函数
+                //别人的东西-打招呼啊
+                //#include
+                printf("hello world\n")//  \n - 指的是换行
+                return 0;//返回 0
+}
+
+void main()-过时的写法
+{
+
+}
+
+//char-字符类型
+//%d-打印整型
+//%c-打印字符
+//%f-打印浮点数字-打印小数
+//%p-以地址的形式打印
+//%x-打印16进制数字
+//%o-....
+int  main()
+{
+	char ch = 'a';//内存 char ch = 'a' - 用字符类型创建了一个变量，变量向内存申请了一个空间，空间名字叫做a
+                printf ("%c\n", ch);//%c - 打印字符格式的数据
+                //20;
+                int age = 20;
+                printf ("%d\n"，age);//%d - 打印整型十进制数据
+                long-长整型
+                long num = 100;
+                printf ("%d\n，num")
+                float f = 5.0;
+                printf ("%f\n"，f);
+                printf ("%d\n",sizeof(float));//sizeof-显示所用变量申请空间内存的大小 - 输出结果为4字节
+	return 0;
+}
+字节
+计算机中单位
+bit- 比特位-计算机硬件通电后产生正负电，用1或0二进制数表示正负电，1或0占用的空间即比特位
+byte-字节-1字节=8比特位
+1kb=1024byte
+1mb=1024kb
+1gb=1024mb
+1tb=1024gb
+1pb=1024tb
+
+char 字符数据类型 1字节
+short 短整型 2
+int 整型 4
+long 长整型 4
+long long 更长的整型 4/8  -c语言标准规定sizeof(long)>=sizeof(int)
+float 单精度浮点数 8
+double 双精度浮点数 4
+合理选择数据类型更节省空间 8
+
+int num2 = 20;//-全局变量-定义在代码块（{}）之外的变量
+int  main()
+{
+    int num = 10;//-局部变量-定义在代码块（{}）之内的变量 放在main函数内的变量是局部变量，但局部变量不一定之放在main函数内
+    //局部变量和全局变量的名字建议不要相同-容易误会，产生bug
+    //当局部变量和全局变量的名字相同的时候，局部变量优先
+    printf("%d\n",num);
+	return 0;
+}
+
+int  main()
+{
+	//计算两个数的和
+	int sum = 0;
+                int num1 = 0;
+	int num2 = 0;
+	//输入数据-使用输入函数scanf
+	scanf("%d%d",&num1,&num2);//取地址符号&
+	//c语言语法规定，变量要定义在当前代码块的最前面
+	sum = num1 + num2;
+	printf("sum = %d\n",sum);
+	return 0;
+}
+
+int main()
+{
+   //局部变量的作用域
+   int num = 0;
+   {
+         printf("num = %d\n",num);
+   } 
+}
+全局变量的作用域是整个工程
+声明extern外部符号
+局部变量的生命周期，进入作用域生命开始，退出作用域生命结束（函数快{}）
+全局变量的生命周期是整个程序的生命周期
+
+scanf是c语言提供的函数，scanf_s不是标准c语言提供的函数，由vs编译器提供
+建议使用scanf统一标准，在其他编译器如gcc，则可以编译，函数具有跨平台性，可移植性
+
+int main()
+{
+(const) int n = 10;//添加常属性定义后仍无法运行，因为本质n仍是变量
+int arr[n] = {0};//无法运行，因为[]中的n表达常量，上面lnt n = 10中定义n为变量
+
+
+const int num = 4;//2.const - 常属性 num为const修饰的常变量
+printf("%d\n",num);
+num = 8;//无法正常运行，因为num = 4被const定义为常变量，则后面不能改变
+printf("%d\n",num);
+//1.字面常量
+3;
+100;
+3.14;//
+return 0;
+}
+//3.#define 定义的标识符常量
+#define MAX 10
+int main()
+{
+int arr[MAX] = {0};
+printf("%d\n",MAX);
+return 0;
+}
+//4.枚举常量-枚举-一一列举 枚举关键 - enum
+enum Sex
+{
+	MALE,
+	FEMALE,
+	SECRET,
+};
+//MALE,FEMALE,SECRET - 枚举常量
+int main()
+{
+enum Sex s = FEMALE;
+printf("%d\n",MALE);//0
+printf("%d\n",FEMALE);//1
+printf("%d\n",SECRET);//2
+return 0;
+}
+
+字符串是由双引号引起的一串字符 "****"即字符串
+#include <string.h> //使用字符串函数需提前包括	
+int main()
+{
+                //数据在计算机上存储的时候，存储的是二进制
+                //#av$ a - 97 A - 65 ... ASCII编码 ASCCLL码值
+	char arr1[] = "abc";//arr1 - 数组
+	//"abc"--'a' 'b' 'c' '\0' -'\0'-字符串的结束标志
+	char arr2[] = {'a','b','c','\0'};
+	//'a'-97 'b' 'c'
+                printf("%d\n",strlen (arr1));//strlen - string length 计算字符串长度
+                printf("%d\n",strlen (arr2));
+	printf("%s\n",arr1);//%s 打印字符串
+	printf("%s\n",arr2);
+
+return 0;
+}
+\0为字符串结束标志，不算字符串内容与长度（转义字符）
+转义字符-改变原来的意思 \ - 可改变原字符意思
+
+int main()
+{
+                printf("$c\n",'\x61');// \x61 - x**为16进制数字
+	printf("c:\test\32\test.c");
+                printf("c:\\test\\32\\test.c");// \\转义\为无作用普通\   \32 -- 32是2个八进制数字
+                //32作为8进制代表的那个十进制数字，作为ASCII码值，对应的字符
+                //32 -- > 10进制 26 ->作为ASCII码值代表的字符
+	//\t - 水平制表符 - tab键按出的空格的范围 -		
+return 0;
+}
+
+int main()
+{
+	printf("（are you ok\?\?\）\n");// \?\?\）-- 加\防止??)被解析为三字母词
+return 0;
+}
+？？+) -->在早期c语言语法叫三字母词
+
+早期c语言注释符号/* xxxx */ (不能嵌套)   c++ //
+
+选择语句
+int main()
+{
+	int input = 0;
+	printf("加入比特\n");
+	printf("你要好好学习吗？>:");
+	scanf("%d",&input);//1/0
+	if(input == 1)
+		printf("好offer\n");
+	else
+		printf("卖红薯\n");
+return 0;
+}
+
+循环语句 while语句
+int main()
+{
+	int line = 0;
+	printf("加入比特\n");
+	while(line<20000)
+	{
+		printf("敲一行代码：%d\n",line);
+		line++;
+	}
+	if(line>=20000)
+		printf("好offer\n");
+return 0;
+}
+
+函数 库函数 自定义函数
+int Add(int x,int y)
+{
+int z = x+y;
+return z
+;}
+int main()
+{
+int sum = 0;
+int num1 = 10;
+int num2 = 20;
+int a = 100;
+int b = 200;
+//sum = num1 + num2;
+sum = Add(num1,num2);
+//sum = a + b;
+sum = Add(a,b);
+printf("sum = %d\n",sum);
+return 0;
+}
+Add即两数的相加函数  
+
+数组：一组相同类型元素的集合
+int main()
+{
+//int a = 1;
+//int b = 2;
+//...
+int arr[10] = {1,2,3,4,5,6,7,8,9,10};//定义一个存放10个整数数字的数组  arr-即数组
+//printf("%d/n", arr[4]);//下标的方式访问元素 - arr[下标]
+//char ch[20]; 
+//float arr2[5];
+int i = 0;
+while(i<10)
+{
+printf("%d ",arr[i]);
+i++;
+}
+return 0;
+}
+arr          1 2 3 4 5 6 7 8 9 10
+               0 1 2 3 4 5 6 7 8 9 - 数组的下标
+arr下标默认从0开始
+
+操作符
+% - 取模 如5/2=2 5%2=1 即取余数
+移（二进制位）位操作符 <<左移 >>右移
+int main()
+{
+int a = 1;
+int b = a<<1;//1在32比特位中以2进制整体向左移一位，使1变成10进制的2
+printf("%d\n",b);
+return 0;
+}
+
+（二进制）位操作符
+&按位与(按位两1输出一1) |按位或（按位一1一0输出一1） ^按位异或（按位相同则0，按位相异则1）
+011                                     011                                         011
+101                                     101                                         101
+001                                     111                                         110
+int main()
+{
+int a = 3;
+int b =5;
+int c = a&b;
+	printf("%d\n",c);
+//3=011
+//5=101
+//c=001=1
+return 0;
+}
+
+赋值操作符（复合赋值符） = 赋值  == 判断是否相等
+a = a+10等价于a += 10 其他符号同理
+
+单目操作符 双目操作符 三目操作符
+a+b + -- 双目操作符  
+！逻辑反操作符 10 -- !10 = 0 c语言中0-假 1-真
+-  负值 + 正值
+
+sizeof（xxx） 类型大小 计算变量或类型所占空间的大小  单位字节
+int main()
+{
+	int arr[10] = {0};
+int sz = 0;
+//10*sizeof(arr) = 40
+printf("%d\n",sizeof(arr));
+//计算数组的元素个数
+//个数=数组总大小/每个元素的大小
+sz = sizeof(arr)/sizeof(arr[0]);
+printf("%d\n",sz);
+return 0;
+}
