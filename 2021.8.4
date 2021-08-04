@@ -1,0 +1,177 @@
+//字符串的结束标志：‘\0’
+//"abcdef";
+//'\0'-转义字符-0
+//‘0’-> 48
+// EOF - end of file - 文件结束标志 
+
+比较大小的函数
+int z(int x,int y)
+{
+	if(x > y)
+{
+	return x;
+}
+	else(y > x);
+{
+		return y;
+}
+//return;
+}
+int main()
+{
+	int c = 0;
+	int x;
+	int y;
+	scanf("%d%d",&x,&y);
+	c = z(x,y);
+	printf("%d\n",c);
+	
+
+return 0;
+}
+
+~ - 按(二进制)位取反
+int main()
+{
+	int a = 0;//4个字节,32bit位
+	int b =~a;//b是有符号的整型
+	//~ - 按(二进制)位取反
+	//101
+	//010
+	//00000000000000000000000000000000
+	//11111111111111111111111111111111
+	//原码 反码 补码
+	//负数在内存中储存的时候，存储的是二进制的补码
+	//111111111111111111111111
+	//111111111111111111111110
+	//100000000000000000000001
+	printf("%d\n",b);//使用的，打印的是这个数的原码
+return 0;
+}
+
+++ --使用同理
+int main()
+{
+	int a = 10;
+	//int b = a++;//后置++，先使用，再++
+                int b = ++a;/前置++，先++，再使用
+	printf("a = %d b = %d\n",a,b);//后置11 10 前置11 11
+return 0;
+}
+
+（类型）强制类型转换
+int main()
+{
+int a = (int)3.14;//double --> int
+return 0;
+}
+
+关系操作符  !=用于测试“不相等” ==用于测试“相等”（判断）
+
+逻辑操作符 
+&&-逻辑与（同真真同假假一假一真为假）
+||-逻辑或（一真为真）
+int main()
+{
+//真 - 非0
+//假 - 0
+//&& - 逻辑与
+int a = 3;
+int b = 5;
+int c = a && b;
+printf("%d\n",c);
+return 0;
+}
+;
+
+条件操作符 (三目操作符)
+exp1?exp2:exp3; - 当exp1成立时整体表达exp2，反之表达exp3
+int main()
+{
+int a = 10;
+int b = 20;
+int max = 0;
+max = (a > b?a:b);
+	printf("%d\n",max);
+//if(a>b)
+//	max = a;
+//else
+//	max = b;
+return 0;
+}
+
+逗号表达式 exp1,exp2,exp3,..expN
+
+[] - 下标引用操作符 （） - 函数调用操作符
+int add(int x,int y)
+{
+	int z = 0;
+	z = x + y;
+	return z;
+}
+int main()
+{
+	//int arr[10] = {1,2,3,4,5,6};
+ //   printf("%d\n",arr[4]);//[] - 下标引用操作符
+	int a = 10;
+	int b =20;
+	int sum = 0;
+	int sum = add(a,b);//() - 函数调用操作符
+ return 0;
+}
+
+原码反码补码
+只要是整数，内存中存储的都是二进制的补码
+正数 --原码反码补码相同
+负数    原码                          反码                                  补码
+           直接按照正负            原码的符号位不变              反码+1
+           写出的二进制序列      其他位按位取反得到          
+ 
+常见关键字
+auto - 自动 
+int main()
+{
+(auto) int a = 0;//auto - 自动 a为局部变量也为自动变量，因局部变量都是自动变量则省略
+return 0;
+}
+register - 寄存器
+int main()
+{
+	register int a = 10;//建议把a定义成寄存器变量
+ return 0;
+}
+signed 定义变量有符号的 unsighed 定义变量无符号的
+struct 结构体关键字 union 联合体/共用体
+typedef 类型定义 类型重定义 typedef unsigned int u_int则u_int等价于unsigned int
+即typedef a b 则b等价于a
+static 修饰局部变量 局部变量的生命周期变长
+static 修饰全局变量 全局变量的作用域改变 让静态的全局变量只能在自己所在的源文件内部使用
+static 修饰函数 函数的外部链接属性被改变为内部链接属性 与static修饰全局变量同理
+void test()
+{
+	static int a = 1;
+//无static时，a 是一个静态的局部变量；有static时，a是一个生命周期延长的局部变量
+	a++;
+	printf("a = %d\n",a);
+}
+int main()
+{
+	int i = 0;
+	while (i<5)
+	{
+		test();
+		i++;
+	}
+ return 0;
+}
+
+#define 定义标识符常量或宏 宏-带参数
+#define Max(x,y) (x>y?x:y)
+int main()
+{
+	int a = 10;
+	int b = 20;
+	int max = Max(a,b);
+	printf("%d\n",max);
+ return 0;
+}
